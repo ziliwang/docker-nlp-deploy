@@ -26,6 +26,7 @@ RUN echo http://mirrors.aliyun.com/alpine/v3.10/main > /etc/apk/repositories; \
     rm -r "$CONDA_DIR/pkgs/" && \
     mkdir -p "$CONDA_DIR/locks" && \
     chmod 777 "$CONDA_DIR/locks" && \
-    apk del --purge .build-dependencies
+    apk del --purge .build-dependencies && \
+    rm *.apk conda.sh
 
 ENV PATH=/opt/conda:$PATH LANG="en_US.utf8" LANGUAGE="en_US:en"
