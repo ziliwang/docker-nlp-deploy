@@ -18,10 +18,9 @@ RUN echo http://mirrors.aliyun.com/alpine/v3.10/main > /etc/apk/repositories; \
     conda config --set show_channel_urls yes && \
     conda update --all --yes && \
     conda config --set auto_update_conda False && \
-    conda install pytorch torchvision cpuonly -c pytorch -y && \
-    conda install -c conda-forge --no-update-deps python=3.6.5 numpy scipy pandas uwsgi pytorch-pretrained-bert Flask==1.1.1 Flask-RESTful==0.3.7 \
-      WTForms==2.2.1 requests scikit-learn==0.20.3  && \
-    ln -s /home/user/miniconda/lib/*.58 /lib64/ && \
+    conda install pytorch torchvision cudatoolkit=10.0 -c pytorch==1.2 -y && \
+    conda install -c conda-forge --no-update-deps numpy scipy pandas pytorch-pretrained-bert scikit-learn textdistance click && \
+    pip install --no-cache-dir records -y -i https://mirrors.aliyun.com/pypi/simple && \
     conda clean -tipsy && \
     rm -r "$CONDA_DIR/pkgs/" && \
     mkdir -p "$CONDA_DIR/locks" && \
@@ -30,5 +29,3 @@ RUN echo http://mirrors.aliyun.com/alpine/v3.10/main > /etc/apk/repositories; \
     rm *.apk conda.sh
 
 ENV PATH=/opt/conda/bin:$PATH LANG="en_US.utf8" LANGUAGE="en_US:en"
-
-# line7-10: miniconda需要glibc包, line22-23只对缺失包进行安装，不更新已安装包; line24: uwsgi依赖库
