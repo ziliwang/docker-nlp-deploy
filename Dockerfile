@@ -18,7 +18,7 @@ RUN echo http://mirrors.aliyun.com/alpine/v3.10/main > /etc/apk/repositories; \
     conda config --set show_channel_urls yes && \
     conda update --all --yes && \
     conda config --set auto_update_conda False && \
-    conda install pytorch torchvision cudatoolkit=10.0 -c pytorch==1.2 -y && \
+    conda install pytorch==1.2 torchvision cudatoolkit=10.0 -c pytorch -y && \
     conda install -c conda-forge --no-update-deps numpy scipy pandas pytorch-pretrained-bert scikit-learn textdistance click && \
     pip install --no-cache-dir records -y -i https://mirrors.aliyun.com/pypi/simple && \
     conda clean -tipsy && \
