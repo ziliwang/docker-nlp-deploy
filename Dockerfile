@@ -19,9 +19,9 @@ RUN echo http://mirrors.aliyun.com/alpine/v3.10/main > /etc/apk/repositories; \
     conda update --all --yes && \
     conda config --set auto_update_conda False && \
     conda install pytorch torchvision cpuonly -c pytorch -y && \
-    conda install -c conda-forge numpy scipy pandas uwsgi pytorch-pretrained-bert pytorch-transformers=1.1.0 Flask==1.1.1 Flask-RESTful==0.3.7 \
+    conda install -c conda-forge numpy scipy pandas uwsgi pytorch-pretrained-bert Flask==1.1.1 Flask-RESTful==0.3.7 \
       WTForms==2.2.1 requests scikit-learn==0.20.3  && \
-    ln -s /home/user/miniconda/lib/*.58 /lib64/ && \
+    ln -s /opt/conda/lib/*.58 /lib64/ && \
     conda clean -tipsy && \
     rm -r "$CONDA_DIR/pkgs/" && \
     mkdir -p "$CONDA_DIR/locks" && \
